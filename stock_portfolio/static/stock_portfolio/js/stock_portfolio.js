@@ -4,6 +4,7 @@ $(function() {
         var symbol = $('#stock_searchbar').val().trim();
         if (!symbol)
             return;
+        $
         alert('FIXME: load ' + symbol);
         location.reload();
     }
