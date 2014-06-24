@@ -1,0 +1,29 @@
+body { padding-top: 50px }
+
+/********/
+/* HOME */
+/********/
+#home_container { padding: 20px 0; }
+#portfolio { margin: 20px 0; }
+
+/*************/
+/* SEARCHBAR */
+/*************/
+#stock_searchbar_group { max-width: 600px; }
+.search_symbol {
+    font-weight: bold;
+    min-width: 110px;
+    display: inline-block;
+}
+.search_name {}
+.search_market { font-style: italic; color: #c0c0c0; }
+.tt-suggestion { cursor: pointer; }
+.tt-suggestion:hover { background-color: #ddf0ff; }
+.tt-suggestions {
+    width: 561px;
+    border: 1px solid #cccccc;
+    padding: 8px 10px 8px 10px;
+    background-color: #ffffff;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
