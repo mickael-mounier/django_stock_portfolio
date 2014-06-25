@@ -25,3 +25,5 @@ class Order(models.Model):
     exec_time = models.DateTimeField()
     price = models.FloatField()
     fee = models.FloatField()
+    def __str__(self):
+        return '%s |  %s %s%s@%s' % (self.exec_time, self.stock.yahoo_symbol, '+' if self.side == 'B' else '-', self.qty, self.price)

@@ -3,8 +3,7 @@ body { padding-top: 50px }
 /********/
 /* HOME */
 /********/
-#home_container { padding: 20px 0; }
-#portfolio { margin: 20px 0; }
+.navbar ~ * { padding: 20px 0; }
 
 /*************/
 /* SEARCHBAR */
