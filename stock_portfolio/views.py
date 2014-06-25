@@ -21,7 +21,7 @@ def new_stock(symbol):
 def portfolio_add_stock(request, portfolio_id, portfolio, symbol, stock):
     if stock is None:
         sotck = new_stock(symbol)
-        pass # FIXME: create it!
+    # FIXME: attack stock to portfolio!
     return redirect('portfolio', {'portfolio_id': portfolio_id})
 
 # TO READ: http://stackoverflow.com/questions/17245498/get-stock-quotes-from-yahoo-finance-in-json-format-using-a-javascript
