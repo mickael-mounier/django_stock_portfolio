@@ -1,0 +1,16 @@
+{% extends 'stock_portfolio/base.html' %}
+
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block content %}
+      <div id="stock_container">
+        <h1>{{ stock.name }}</h1>
+      </div>
+{% endblock %}
+
+{% block bootstrap3_extra_script %}
+      <script> hist = {{ hist | safe }};</script>
+      <script src="http://code.highcharts.com/stock/highstock.js"></script>
+      <script src="{% static 'stock_portfolio/js/stock.js' %}"></script>
+{% endblock %}

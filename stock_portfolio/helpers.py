@@ -4,6 +4,29 @@ from functools import wraps
 
 from models import Stock, Portfolio
 
+from datetime import date, timedelta
+import urllib2
+import urllib
+import json
+
+def execute_yql_query_(query):
+    url = 'http://query.yahooapis.com/v1/public/yql?q='
+    url += urllib.quote_plus(query)
+    url += '&format=json&env=store://datatables.org/alltableswithkeys'
+    return json.loads(urllib2.urlopen(url).read())
+
+def yahoo_get_symbol(symbol):
+    return execute_yql_query_('select * from yahoo.finance.quote where symbol = "' + symbol + '"')
+
+def yahoo_get_hist(symbol, start=None, end=None):
+    if start is None and end is None:
+        end = date.today() - timedelta(days=1)
+        start = end - timedelta(days=366)
+    return execute_yql_query_('select * from yahoo.finance.historicaldata where symbol = "' + symbol +
+                              '" and startDate = "' + start.strftime('%Y-%m-%d') +
+                              '" and endDate = "' + end.strftime('%Y-%m-%d') +'"')
+
+
 def get_portfolio_from_id(fatal=False):
     def wrap(func):
         @wraps(func)
