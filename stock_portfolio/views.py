@@ -5,6 +5,7 @@ from models import Stock, Portfolio
 from helpers import get_portfolio_from_id, get_stock_from_symbol, yahoo_get_hist
 
 import json
+import time
 
 def home(request):
     return render(request, 'stock_portfolio/home.html', {'portfolios': Portfolio.objects.all()})
@@ -26,5 +27,9 @@ def portfolio_add_stock(request, portfolio_id, portfolio, symbol, stock):
 @get_stock_from_symbol(fatal=True)
 def stock(request, symbol, stock):
     hist = yahoo_get_hist(symbol)['query']['results']['quote']
+    stock_data = [[int(time.mktime(time.strptime(d['Date'], '%Y-%m-%d')) * 1000),
+                   float(d['Adj_Close'])] for d in hist]
+    stock_data.sort(key=lambda x: x[0])
+    import pprint ; pprint.pprint(hist)
     return render(request, 'stock_portfolio/stock.html', {'stock': stock,
-                                                          'hist': json.dumps(hist)})
+                                                          'stock_data': json.dumps(stock_data)})

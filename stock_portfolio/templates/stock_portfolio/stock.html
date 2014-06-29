@@ -5,12 +5,17 @@
 
 {% block content %}
       <div id="stock_container">
-        <h1>{{ stock.name }}</h1>
+        <h1 id="stock_name">{{ stock.name }}</h1>
+        <div id="stock_chart"></div>
       </div>
 {% endblock %}
 
 {% block bootstrap3_extra_script %}
-      <script> hist = {{ hist | safe }};</script>
+      <script>
+        stockData = {{ stock_data | safe }};
+        stockName = "{{ stock.name }}";
+        stockMnemo = "{{ stock.yahoo_symbol }}";
+      </script>
       <script src="http://code.highcharts.com/stock/highstock.js"></script>
       <script src="{% static 'stock_portfolio/js/stock.js' %}"></script>
 {% endblock %}

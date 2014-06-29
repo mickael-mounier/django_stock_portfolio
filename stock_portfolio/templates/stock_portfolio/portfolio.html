@@ -5,11 +5,8 @@
 
 {% block content %}
       <div id="portfolio_container">
-        <h1>{{ portfolio.name }}</h1>
+        <h1>"{{ portfolio.name }}" Portfolio</h1>
         <ul>
-{% for stock in portfolio.stocks.all %}
-          <li>{{ stock.yahoo_symbol }}: {{ stock.name }}</li>
-{% endfor %}
         </ul>
 
         <div class="input-group" id="stock_searchbar_group">
@@ -31,32 +28,21 @@
                 <th></th>
             </thead>
             <tbody>
+{% for stock in portfolio.stocks.all %}
               <tr>
-                <td>BNP Paribas SA</td>
-                <td>Paris</td>
-                <td>77</td>
-                <td>50.31</td>
-                <td>51.44</td>
-                <td>352.13</td>
+                <td><a href="{% url 'stock' symbol=stock.yahoo_symbol %}">{{ stock.name }}</a></td>
+                <td>{{ stock.market }}</td>
+                <td>FIXME</td>
+                <td>FIXME</td>
+                <td>FIXME</td>
+                <td>FIXME</td>
                 <td>
                   <div class="btn-group">
                     <button type="button" class="btn btn-default btn-danger">Sell</button><button type="button" class="btn btn-default btn-success">Buy</button>
                   </div>
                 </td>
               </tr>
-              <tr>
-                <td>Electricite de France SA</td>
-                <td>Paris</td>
-                <td>350</td>
-                <td>10.21</td>
-                <td>9.84</td>
-                <td>-20.13</td>
-                <td>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-danger">Sell</button><button type="button" class="btn btn-default btn-success">Buy</button>
-                  </div>
-                </td>
-              </tr>
+{% endfor %}
             </tbody>
             <tfoot>
               <tr>
@@ -65,7 +51,7 @@
                 <td></td>
                 <td></td>
                 <td><b>Total</b></td>
-                <td>332.00</td>
+                <td>FIXME</td>
                 <td>
                 </td>
               </tr>

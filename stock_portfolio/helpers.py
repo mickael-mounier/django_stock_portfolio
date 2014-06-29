@@ -13,7 +13,9 @@ def execute_yql_query_(query):
     url = 'http://query.yahooapis.com/v1/public/yql?q='
     url += urllib.quote_plus(query)
     url += '&format=json&env=store://datatables.org/alltableswithkeys'
-    return json.loads(urllib2.urlopen(url).read())
+    res = json.loads(urllib2.urlopen(url).read())
+    import pprint ; pprint.pprint(res)
+    return res
 
 def yahoo_get_symbol(symbol):
     return execute_yql_query_('select * from yahoo.finance.quote where symbol = "' + symbol + '"')
